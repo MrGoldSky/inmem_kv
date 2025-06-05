@@ -1,4 +1,4 @@
-# KV: Минималистичный in-memory Key-Value Store
+# KV: In-memory Key-Value Store
 
 Проект представляет собой простой, но функционально полный in-memory key-value store с собственным сетевым сервером.
 
@@ -54,7 +54,7 @@
 │   ├── hash_table.hpp           # Модульная хеш-таблица
 │   ├── sharded_hash_map.hpp     # Sharded-обёртка над hash_table
 │   ├── logger.hpp               # Интерфейс логгера: уровни (TRACE/DEBUG/INFO/WARN/ERROR/FATAL) и макросы `LOG_*`
-│   ├── logger.cpp               # Реализация логирования: консоль + файл, безопасность потоков, форматирование timestamp fileciteturn0file1
+│   ├── logger.cpp               # Реализация логирования: консоль + файл, безопасность потоков, форматирование timestamp 
 │   ├── server.hpp               # Интерфейс сетевого сервера: шаблонный класс Server<Key,Value>, содержащий `sharded_map` и логику обработки команд, настройку сокета
 │   └── thread_pool.hpp          # Интерфейс ThreadPool: запуск пула
 │   └── thread_pool.cpp          # Реализация ThreadPool: блокировка очереди задач (mutex/condition), потоки‐работники, atomic для учёта активных задач 
