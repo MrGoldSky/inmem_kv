@@ -42,23 +42,25 @@
 
 ```
 .
-├── CMakeLists.txt               # (по желанию) скрипт для сборки через CMake
-├── README.md                    # (этот файл)
-├── config.hpp                   # Параметры по умолчанию (порт, размер пула потоков и т.д.)
-├── main.cpp                     # Точка входа, инициализация логгера, запуск сервера
-├── kv/                          # Пространство имён kv
-│   ├── allocator.hpp            # Интерфейс MemoryPool
-│   ├── allocator.cpp            # Реализация MemoryPool
-│   ├── coroutine_io.hpp         # Интерфейс асинхронного I/O
-│   ├── coroutine_io.cpp         # Реализация EventLoop (epoll/`select`), Read/Write Awaitable для Windows/Linux
-│   ├── hash_table.hpp           # Модульная хеш-таблица
-│   ├── sharded_hash_map.hpp     # Sharded-обёртка над hash_table
-│   ├── logger.hpp               # Интерфейс логгера: уровни (TRACE/DEBUG/INFO/WARN/ERROR/FATAL) и макросы `LOG_*`
-│   ├── logger.cpp               # Реализация логирования: консоль + файл, безопасность потоков, форматирование timestamp 
-│   ├── server.hpp               # Интерфейс сетевого сервера: шаблонный класс Server<Key,Value>, содержащий `sharded_map` и логику обработки команд, настройку сокета
-│   └── thread_pool.hpp          # Интерфейс ThreadPool: запуск пула
-│   └── thread_pool.cpp          # Реализация ThreadPool: блокировка очереди задач (mutex/condition), потоки‐работники, atomic для учёта активных задач 
-└── kv_server.log                # Файл логов по умолчанию (генерируется при запуске)
+├── CMakeLists.txt                   # Скрипт для сборки через CMake
+├── README.md                        # (этот файл)
+├── main.cpp                         # Точка входа, инициализация логгера, запуск сервера
+├── include/
+│   ├── config.hpp                   # Параметры по умолчанию (порт, размер пула потоков и т.д.)
+│   ├──  kv/                         # Пространство имён kv
+│   │   ├── allocator.hpp            # Интерфейс MemoryPool
+│   │   ├── coroutine_io.hpp         # Интерфейс асинхронного I/O
+│   │   ├── hash_table.hpp           # Модульная хеш-таблица
+│   │   ├── sharded_hash_map.hpp     # Sharded-обёртка над hash_table
+│   │   ├── logger.hpp               # Интерфейс логгера: уровни (TRACE/DEBUG/INFO/WARN/ERROR/FATAL) и макросы `LOG_*`
+│   │   ├── server.hpp               # Интерфейс сетевого сервера: шаблонный класс Server<Key,Value>, содержащий `sharded_map` и логику обработки команд, настройку сокета
+│   │   └── thread_pool.hpp          # Интерфейс ThreadPool: запуск пула
+│   ├── src/
+│   │   ├── allocator.cpp            # Реализация MemoryPool
+│   │   ├── coroutine_io.cpp         # Реализация EventLoop (epoll/`select`), Read/Write Awaitable для Windows/Linux
+│   │   ├── logger.cpp               # Реализация логирования: консоль + файл, безопасность потоков, форматирование timestamp 
+│   └── └── thread_pool.cpp          # Реализация ThreadPool: блокировка очереди задач (mutex/condition), потоки‐работники, atomic для учёта активных задач 
+└── kv_server.log                    # Файл логов по умолчанию (генерируется при запуске)
 ```
 
 ---
